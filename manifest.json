@@ -1,0 +1,21 @@
+{
+  "name": "Empreinte Locale",
+  "short_name": "Empreinte",
+  "description": "Marketplace des Artisans Ivoiriens",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#FCF9F5",
+  "theme_color": "#2D3436",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3063/3063822.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3063/3063822.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
