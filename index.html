@@ -268,24 +268,26 @@
     </div>
 
     <!-- Audio Story Modal -->
-    <div id="audio-modal" class="modal">
-      <div class="modal-content audio-content" style="max-width:350px; text-align:center;">
-        <button class="close-modal" onclick="closeAudio()">&times;</button>
+    <div id="audio-modal" class="modal-overlay" onclick="closeAudio()">
+      <div class="modal-content audio-content" style="max-width:350px; text-align:center;" onclick="event.stopPropagation()">
+        <button class="icon-btn" style="position:absolute; top:15px; right:15px;" onclick="closeAudio()">
+          <i data-lucide="x" size="20"></i>
+        </button>
         <div style="margin-top:20px;">
           <div style="width:80px; height:80px; margin:0 auto 15px auto; border-radius:50%; overflow:hidden; border:3px solid var(--accent-color);">
             <img id="audio-artisan-img" src="" style="width:100%; height:100%; object-fit:cover;">
           </div>
-          <h4 id="audio-artisan-name" class="serif" style="margin-bottom:10px;">Artisan</h4>
+          <h4 id="audio-artisan-name" class="serif" style="margin-bottom:10px; color:var(--primary-color);">Artisan</h4>
           <div id="audio-waves" style="display:flex; justify-content:center; gap:3px; margin-bottom:20px; height:30px; align-items:center;">
              <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
           </div>
           <p id="audio-story" style="font-size:14px; color:var(--text-gray); line-height:1.6; max-height:200px; overflow-y:auto; padding:0 10px;"></p>
         </div>
+        <button class="btn-dark" style="width:100%; margin-top:20px;" onclick="closeAudio()">Fermer</button>
       </div>
     </div>
 
     <!-- Floating Cart Button -->
-
     <button class="floating-cart" id="floating-cart-btn" onclick="switchView('panier')">
       <span>Panier</span>
       <i data-lucide="shopping-cart" size="18"></i>
@@ -311,19 +313,6 @@
         <span>Profil</span>
       </button>
     </nav>
-
-    <!-- Audio Modal -->
-    <div id="audio-modal" class="modal-overlay">
-      <div class="modal-content" style="z-index: 2000;">
-        <img id="audio-artisan-img" src="" alt="Artisan">
-        <h3 id="audio-artisan-name" class="serif">Nom de l'artisan</h3>
-        <div class="waves" id="audio-waves" style="display:none;">
-          <div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div>
-        </div>
-        <p id="audio-story">"L'histoire de ce produit..."</p>
-        <button class="btn-dark" style="width:100%; margin-top:15px;" onclick="closeAudio()">Fermer</button>
-      </div>
-    </div>
 
   </div>
 

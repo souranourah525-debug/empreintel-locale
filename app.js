@@ -150,6 +150,39 @@ function checkout() {
   switchView('orders');
 }
 
+function selectLogistics(el, type) {
+  document.querySelectorAll('.log-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function openLanguageModal() {
+  const html = `
+    <div class="lang-modal-content">
+      <button class="lang-btn" onclick="setLang('Français')">Français</button>
+      <button class="lang-btn" onclick="setLang('English')">English</button>
+      <button class="lang-btn" onclick="setLang('Dioula')">Dioula</button>
+      <button class="lang-btn" onclick="setLang('Baoulé')">Baoulé</button>
+    </div>
+  `;
+  openProfileOption('Choisir la langue', html);
+}
+
+function setLang(lang) {
+  alert('Langue changée : ' + lang);
+  closeProfileOption();
+}
+
+function openSupportModal() {
+  const html = `
+    <div style="text-align:center; padding:10px;">
+      <p style="margin-bottom:15px;">Besoin d'aide ? Nos conseillers vous répondent en direct.</p>
+      <button class="btn-dark" style="width:100%; margin-bottom:10px;" onclick="window.location.href='tel:+2250707070707'">Appeler le Support</button>
+      <button class="btn-outline" style="width:100%;" onclick="window.location.href='https://wa.me/2250707070707'">WhatsApp (Gratuit)</button>
+    </div>
+  `;
+  openProfileOption('Support Multilingue', html);
+}
+
 function renderOrders() {
   const container = document.getElementById('orders-list');
   if(!container) return;
@@ -199,6 +232,10 @@ function changeQty(n) {
   currentQty += n;
   if(currentQty < 1) currentQty = 1;
   document.getElementById('detail-qty').innerText = currentQty;
+}
+
+function playAudioFromDetail() {
+  if(currentDetailProduct) playAudio(currentDetailProduct.id);
 }
 
 function selectPayMethod(el) {

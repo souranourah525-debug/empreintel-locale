@@ -1,4 +1,4 @@
-const CACHE_NAME = 'empreinte-v1';
+const CACHE_NAME = 'empreinte-v2';
 const ASSETS = [
   'index.html',
   'style.css',

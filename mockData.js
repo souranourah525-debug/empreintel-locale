@@ -1,5 +1,5 @@
-// mockData.js : Base de données Master - 400 Produits & 30 Artisans
-// Configuration finale avec les profils réels des artisans
+// mockData.js : Base de données Master - 400+ Produits & 30 Artisans
+// Version stable restaurée avec images authentiques OpenAI
 
 const ethnies = ["Baoulé", "Sénoufo", "Dan (Yacouba)", "Gouro", "Bété", "Akan", "Dioula"];
 
@@ -47,26 +47,62 @@ const artisans = [
   { id: "a30", name: "Afro Home Market", specialty: "Maison, mode et accessoires", city: "Bingerville", phone: "07 44 55 66 77", category: "Multi-artisanat", photo: "https://images.openai.com/static-rsc-4/YhXN1q6VWS09fh8BYYIyrSvupv3HL6ttvWUf9-0O4kWHR2fpRxLn1YMsX5V0ehq_MFFp3RjX1VdnJMwmykiyu80r9ATfEFD6-wA0DZuydY-k-1xW3qgX82kpkdHt_ItCBZPSoW47Mwbo4NIPnpr_MkUmVvuS8WqubDN5g2jneu-rG_0cDlj57RNH76vVBGcm?purpose=fullsize", rating: 4.8, bio: "Espace dédié aux créations africaines contemporaines." }
 ];
 
+// Pools d'images OpenAI authentiques par catégorie
+const pools = {
+  "Mode & Couture": [
+    "https://images.openai.com/static-rsc-4/htk2m17QnCNYWAq9SpwIFPsLgd3S0y7W7aFZt1uBGoWOarU1tX41SvDAqF8_fP3-Z6BAevsO-72uIK3ZJYE4y-6KxN6F-vt4W9jJlSvZeHe_94yS3D4xgpyEPYysv-L_-ASe1HdXjUbzwHDgEOYDzA3XrVaX-iklN6gwTAO9_hHlA7G4i9hlccTzVpu40-nV?purpose=fullsize"
+  ],
+  "Bijoux & Accessoires": [
+    "https://images.openai.com/static-rsc-4/eROavXTNoIWFUORHd3CkFZ92S7Xyd4r7wcjGLOtPHDV26544jpnnzTniUiPvtmsC28hdOHw5iu0D72PE0OlFgSGqfU7gAJNDDX9Je5xSdaur_y2TYYqFeQ1dYua4F9yXDJ_3X3VVjAUc3ACJuk4IgymA30SphO-CP2PmDB-A6-C0u86tLFWl4lDz0TcyhDOZ?purpose=fullsize",
+    "https://images.openai.com/static-rsc-4/39r1qZjhmkwgZQ-Ua6dA2Rr4Auoi8nF98C9ZBrzmEq8Lc4uJfqApA4k8hX5ofnbh5Mw7GZg2i8pt6KRejJFYlzL9llepjSJDjsbtaC0oqqxMvxNJ7u84392XEWVdSYuK4JdlHJ7e-YS3sFzmZa73w83uDh6e5pBQoMM3pl8lXHexy39xaJnG_tZA4cASaaEF?purpose=fullsize"
+  ],
+  "Décoration & Maison": [
+    "https://images.openai.com/static-rsc-4/KYDkkXfytqi7i6ChJPeRgoF992QtslNBgYiICziWYi-NLwkyGHpA0SqrwmfwfW2Ctw3aq1lFcXwz-DGglNHvGgdBIE5xWD-A-lFJah9Jwmbk_H5nOXGwqkVxJ3VlndHlbmN48fpSuop4BU3VrwH85LrVDn-LnWfEr7pm6ypbhoZK5oRcDIHXRMD7FUDUEePI?purpose=fullsize",
+    "https://images.openai.com/static-rsc-4/NJVAFWiiosNqOJiiDPjjdRHLWJeFn_bC0HQGugcmmqIgKF4HvBj4pd0SIHKWwcCbp63wul6Yo4Dwp_A9aNS7ndU9qV2zz0rDLL6yHNHDGzwhN29SKu19s8bzcQICCKEGqYQdY_3WoAIDjtWNmdYBkfZk4p2CBcyux1R5kVjw5xLaW3FqDpBK5Bz_70mgdcvF?purpose=fullsize"
+  ],
+  "Cosmétique Naturel": [
+    "https://images.openai.com/static-rsc-4/rIeCxNBp9MDH1Ho3Z5lbWmxyajPlYKA_D56h28Ci8we7bUho0-qN7AAv-tnqQCwxs9ehn2gF_V9XId62xuVi-G3tMzXJEpDMwu-Fsl96xyOtUNToq1GEtVqITRLkXvjMHZQml-b4Jw0vCVi69MWG1e0ExtGidyidGmZ2B8ENkSkCr8en3WKy9ZcUwidb_-yZ?purpose=fullsize",
+    "https://images.openai.com/static-rsc-4/R12g5lckSIINwMvFV9SehWw8hARYCSk1A56ZE2aZ-XZdu-VL0NuTYDNpKz03EsOnfQKsiTVRYqL58QqA7UKzwLCIwv1FZaf2fX1cFwfirwL3qOVgk51oEEtk7iKwWaqvQ-hOnsAjwdtXDn8nGFmpZNILxdT6x3zlo0yeSLSnHOHJ8SWeMvtsPCBLP1Yit9wL?purpose=fullsize"
+  ],
+  "Agriculture Bio": [
+    "https://images.openai.com/static-rsc-4/Q4r2QAmoL00ex4HGn6O0_q538GY0rLEj1CnC0ZwfOV0Z3tQyjR0Aa7Xt1UPd3wMQORFxVdCyGx2TqAM7ktt2UrAfRudeiot35xZG7cCwSX9AfLLfP0nI_gB-tfFHmeJCQfNTyEcHDaVfOUj31Uq8Z8RrSS-0u16zP-gYPYVyYkL1beGWX9z5FXcPnVrG_qHL?purpose=fullsize",
+    "https://images.openai.com/static-rsc-4/mbCUSNHyhYLw3CrqKdorPRKl5m_W80Lb2M260ktDiSk2Ouvk-vwSAvnY5JxHmr7QvBLXpvxcbxRe493nIdoVPFljDhVvZi3aV3kCmAi_wDkAOSaL9hhC9xQ2IzYIEPrNS7wIt1y6AfA4i9uPufdmwe8FEx_sm0HrRCsylf-k1FM5GAcKYBZqJGFI3XG20gxD?purpose=fullsize",
+    "https://images.openai.com/static-rsc-4/LhAU1Y7TV3EEJQ9SIeHklrhNtOVyghXWe-0WKwCfT7kVb96KOnbRWvftebFN4_L-gvxCJnb1JAAkV-XW9geSNmaAXfEU3ZkgohwXx0j6OxPOvu1L8XZkxJg8OzB8qo8TT_-8D4EJfAVI4Gabn-6UeCYoM_h6v1boSDD0AusAudajT68AHb__J5OEah2GH5hg?purpose=fullsize",
+    "https://images.openai.com/static-rsc-4/L5c_TzWW4Zehulbg-9hrchUUNcoEBil6S4X_nL_6Xnq2dcrOlXL0LSa0rqGcMyVHW4ffniC8ewKsEI7ZXA83wiSpX5ojU-v1txnVgfzZEs2noOPM6TmVWUwJaTjTke_aAv63mgn53OgrVCsnnB7C-deB1ybUmY7XKmVsHiYTMMAEV71hFxlMkbhHy1QAXLdh?purpose=fullsize"
+  ],
+  "Produits Transformés": [
+    "https://images.openai.com/static-rsc-4/ZmjHrZXKmOJdKkqbGQuwgkzpvgsdGzY0BkH_T2TWCUxqpqzT6XGColoXXzIN_ntu237r5Gt2jfDUGT2bFlN354B4T2Oy_VEV6oZZUStGv_FaW2nZye96QukQdsK3jByiox0eyg0EQesrXf6AOxEwLDgSPZ-_rcOlYWUGu-N31MrffV7Mt7QEhzOn84RJjTKE?purpose=fullsize",
+    "https://images.openai.com/static-rsc-4/b1cFSyFpzTwNUCrgiv0ZHuGCUtxT90uPe2t3CTAlkCKReuclshLeSqJH9QQKR7AkTjEUD0_8AwWolmapDzX3C4T9b_E8tSm5fwy9DUwc-MQF56WlMgYJOs9SJnokbKTzpViacQsn5hi5iuaRejZPQoeimlYKKTpZYFHRrbc2R6Dh_X3S8b2l8cIL16hZkaPL?purpose=fullsize",
+    "https://images.openai.com/static-rsc-4/-4M97FKuM93a5N1gQkxQFRPwBzhF6Ql8sA1snTOEKGV0i79w1c1I3l8AKoFNF3DgLu-U6dvuBtwLqFHhbF5Gg2xgoog3_o21V4wpPUfVua4lxn8ucpo2eO3Sto22JcPsL0YYB6QvQ0C2fennP41tg2yW6CTS8hxrGmRTWXDp8VJkpDblgunIH6E2o9vZZ4x9?purpose=fullsize",
+    "https://images.openai.com/static-rsc-4/JjZkm2QCWrNxzByz_IZymAXpUx84jszyJsMcRTYBfilttvbvOwlXRn6BAjXDyL-XSu5dzs8W6d4UjunZGpmuRjy7Olp2uXfsDDEqvuGQBWqK_qWshth89g5txTDhk7DhvLPqfJ7OEBCHonaXj_-kaU6Dfc4R0ozzNlItNJSLDG1JWBS_pZKGHgipUWZlJAqm?purpose=fullsize",
+    "https://images.openai.com/static-rsc-4/gwWGy9Fnt7Dh-iukf582eFIvdzDrJLtKQMi1-8W_USdxYw2JTsS6z9UXlRw8Ng6K62N_6bM_shna9KN0kjsB10rZhlmI1eywNe01new-w0yv0wJgG4BDLSGGl6ClUmqymOgwc3tvP81pHePwR-JswAuc4ShtrdMaj4-3PqOdjZcTkbtJIUXc_8CLNbv4zfjK?purpose=fullsize"
+  ],
+  "Multi-artisanat": [
+    "https://images.openai.com/static-rsc-4/NJVAFWiiosNqOJiiDPjjdRHLWJeFn_bC0HQGugcmmqIgKF4HvBj4pd0SIHKWwcCbp63wul6Yo4Dwp_A9aNS7ndU9qV2zz0rDLL6yHNHDGzwhN29SKu19s8bzcQICCKEGqYQdY_3WoAIDjtWNmdYBkfZk4p2CBcyux1R5kVjw5xLaW3FqDpBK5Bz_70mgdcvF?purpose=fullsize"
+  ]
+};
+
 const categoriesConfig = [
-  { name: "Mode & Couture", count: 80, examples: ["Robe Wax Abidjan Chic", "Robe Reine Akan", "Boubou Prestige CI", "Ensemble Gold Wax", "Chemise Urban Africa", "Jupe Harmonie Wax", "Tunique Royal Femme", "Veste Afro Business", "Robe Élégance Baoulé", "Ensemble Coco Style"], imgTerms: ["african-fashion", "wax-print"] },
-  { name: "Bijoux & Accessoires", count: 60, examples: ["Bracelet Akan Prestige", "Collier Reine Africa", "Boucles Coco Chic", "Sac Royal Wax", "Sandales Gold Style", "Bracelet Soleil d’Afrique", "Collier Héritage Chic", "Pochette Urban Wax", "Sandales Élégance Femme", "Sac Créa Femme"], imgTerms: ["african-jewelry", "african-bag"] },
-  { name: "Décoration & Maison", count: 80, examples: ["Masque Baoulé Prestige", "Sculpture Bois Sacré", "Lampe Lagune Chic", "Tableau Soleil d’Afrique", "Panier Akan Style", "Table Prestige CI", "Vase Royal Africa", "Chaise Urban Gold", "Sculpture Harmonie CI", "Lampe Élégance Africa"], imgTerms: ["african-decor", "wooden-sculpture"] },
-  { name: "Cosmétique Naturel", count: 60, examples: ["Savon Noir Prestige", "Beurre Karité Gold", "Huile Coco Pure", "Crème Akan Nature", "Gommage Royal Femme", "Huile Baobab Bio", "Savon Urban Chic", "Crème Soleil Prestige", "Huile Héritage Africa", "Savon Coco Élégance"], imgTerms: ["natural-soap", "shea-butter"] },
-  { name: "Agriculture Bio", count: 60, examples: ["Tomates Nature CI", "Gingembre Premium", "Riz Bio Bouaké", "Maïs Nature Gold", "Patate Douce Bio", "Bananes Plantain Premium", "Salade Verte Nature", "Curcuma Prestige", "Oignons du Terroir", "Mangues Tropicales Bio"], imgTerms: ["organic-farm", "african-fruits"] },
-  { name: "Produits Transformés", count: 60, examples: ["Jus Gingembre Vitalité", "Bissap Bio Nature", "Farine Manioc Premium", "Poudre Cacao Pure", "Chips Banane Plantain", "Attiéké Déshydraté", "Confiture Mangue Soleil", "Huile Coco Nature", "Thé Tropical Bio", "Purée Arachide Nature"], imgTerms: ["fruit-juice", "dried-food"] },
-  { name: "Multi-artisanat", count: 20, examples: ["Objet de Collection", "Instrument de Musique", "Sculpture Bois", "Poterie", "Tissage"], imgTerms: ["african-craft", "handmade"] }
+  { name: "Mode & Couture", count: 70, examples: ["Robe Wax Abidjan Chic", "Robe Reine Akan", "Boubou Prestige CI", "Ensemble Gold Wax", "Chemise Urban Africa", "Jupe Harmonie Wax", "Tunique Royal Femme", "Veste Afro Business", "Robe Élégance Baoulé", "Ensemble Coco Style"] },
+  { name: "Bijoux & Accessoires", count: 70, examples: ["Bracelet Akan Prestige", "Collier Reine Africa", "Boucles Coco Chic", "Sac Royal Wax", "Sandales Gold Style", "Bracelet Soleil d’Afrique", "Collier Héritage Chic", "Pochette Urban Wax", "Sandales Élégance Femme", "Sac Créa Femme"] },
+  { name: "Décoration & Maison", count: 70, examples: ["Masque Baoulé Prestige", "Sculpture Bois Sacré", "Lampe Lagune Chic", "Tableau Soleil d’Afrique", "Panier Akan Style", "Table Prestige CI", "Vase Royal Africa", "Chaise Urban Gold", "Sculpture Harmonie CI", "Lampe Élégance Africa"] },
+  { name: "Cosmétique Naturel", count: 70, examples: ["Savon Noir Prestige", "Beurre Karité Gold", "Huile Coco Pure", "Crème Akan Nature", "Gommage Royal Femme", "Huile Baobab Bio", "Savon Urban Chic", "Crème Soleil Prestige", "Huile Héritage Africa", "Savon Coco Élégance"] },
+  { name: "Agriculture Bio", count: 70, examples: ["Tomates Nature CI", "Gingembre Premium", "Riz Bio Bouaké", "Maïs Nature Gold", "Patate Douce Bio", "Bananes Plantain Premium", "Salade Verte Nature", "Curcuma Prestige", "Oignons du Terroir", "Mangues Tropicales Bio"] },
+  { name: "Produits Transformés", count: 70, examples: ["Jus Gingembre Vitalité", "Bissap Bio Nature", "Farine Manioc Premium", "Poudre Cacao Pure", "Chips Banane Plantain", "Attiéké Déshydraté", "Confiture Mangue Soleil", "Huile Coco Nature", "Thé Tropical Bio", "Purée Arachide Nature"] },
+  { name: "Multi-artisanat", count: 10, examples: ["Objet de Collection", "Instrument de Musique", "Sculpture Bois", "Poterie", "Tissage"] }
 ];
 
 const products = [];
 
 categoriesConfig.forEach((cat, cIdx) => {
-  // Récupérer les artisans de cette catégorie
   const catArtisans = artisans.filter(a => a.category === cat.name || cat.name === "Multi-artisanat");
+  const imgPool = pools[cat.name] || pools["Multi-artisanat"];
   
   for(let i=1; i<=cat.count; i++) {
     const baseName = cat.examples[(i-1) % cat.examples.length];
     const ethnie = ethnies[i % ethnies.length];
     const artisan = catArtisans[i % catArtisans.length] || artisans[0];
+    const image = imgPool[i % imgPool.length];
     
     products.push({
       id: `p_${cIdx}_${i}`,
@@ -75,13 +111,12 @@ categoriesConfig.forEach((cat, cIdx) => {
       category: cat.name,
       ethnie: ethnie,
       price: 2500 + (Math.floor(Math.random() * 50) * 500),
-      image: `https://loremflickr.com/500/500/${cat.imgTerms[0]}?lock=${cIdx}_${i}`,
+      image: image,
       certified: i % 4 === 0,
       story: `Découvrez ce magnifique ${baseName} fabriqué par ${artisan.name}. Cette œuvre est le fruit d'un savoir-faire ancestral transmis de génération en génération au sein de la communauté ${ethnie}. Chaque détail a été pensé pour refléter la richesse culturelle de la Côte d'Ivoire. En choisissant cet article, vous soutenez directement le travail de ${artisan.name} à ${artisan.city} et préservez un patrimoine précieux.`
     });
   }
 });
-
 
 const mockData = {
   artisans,
