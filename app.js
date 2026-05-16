@@ -39,6 +39,15 @@ function resetDatabase() {
 }
 
 function switchView(viewId) {
+  // Protection de l'espace Admin par code
+  if (viewId === 'admin') {
+    const pin = prompt("Veuillez entrer le code d'accès administrateur :");
+    if (pin !== "2580") {
+      alert("Code incorrect. Accès refusé.");
+      return;
+    }
+  }
+
   document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => btn.classList.remove('active'));
   const navBtn = document.querySelector(`.bottom-nav .nav-item[onclick="switchView('${viewId}')"]`);
   if (navBtn) navBtn.classList.add('active');
@@ -289,7 +298,6 @@ function playAudio(productId) {
   const modal = document.getElementById('audio-modal');
   modal.classList.add('show');
 
-  // Animation des barres
   const waves = document.getElementById('audio-waves');
   if(waves) waves.style.display = 'flex';
 
@@ -311,7 +319,6 @@ function closeAudio() {
 }
 
 function renderProductCard(p, container) {
-
   const div = document.createElement('div');
   div.className = 'product-card';
   div.onclick = () => openProductModal(p.id);
@@ -334,7 +341,6 @@ function renderProductCard(p, container) {
         </button>
       </div>
     </div>
-
   `;
   container.appendChild(div);
 }
@@ -390,7 +396,6 @@ function renderArtisans() {
           <div style="font-size:11px; color:var(--accent-color); font-weight:700; margin-top:2px;">★ ${a.rating} / 5</div>
         </div>
       </div>
-
       <div style="margin-top:12px; display:flex; gap:8px;">
         <button class="btn-dark" style="flex:1; font-size:12px;" onclick="window.location.href='tel:${a.phone}'">Contact: ${a.phone}</button>
         <button class="btn-outline" style="flex:1; font-size:12px;" onclick="viewArtisanCatalogue('${a.id}')">Voir Articles</button>
@@ -494,7 +499,6 @@ function closeProfileOption() {
 }
 
 function openAdminForm(type, id = null) {
-
   const item = id ? (type === 'product' ? db.products.find(p => p.id === id) : db.artisans.find(a => a.id === id)) : null;
   
   let html = '';
