@@ -1,87 +1,119 @@
-// mockData.js : Base de données Master - 400 Produits & 30 Artisans
-// Configuration finale avec les profils réels des artisans
+// mockData.js : Base de données Master - Authentique Côte d'Ivoire
+// Sélection d'images réelles pour un rendu Premium
 
 const ethnies = ["Baoulé", "Sénoufo", "Dan (Yacouba)", "Gouro", "Bété", "Akan", "Dioula"];
 
 const artisans = [
-  // Mode & Couture
-  { id: "a1", name: "Atelier Awa Création", specialty: "Robes et ensembles en wax", city: "Abidjan", phone: "07 01 02 03 04", category: "Mode & Couture", photo: "https://images.openai.com/static-rsc-4/AI_fxVPkMk9tAmPZ3li_n4NcsewGjaw7tbiAEUP9vUdypkKA1rKFWG2NFTsExfJQ0n9BhfrkZA2j8rsB7-XhYthXD9mz8i19mIkpQVSjfPiwNqaM-5vS6PgwFOsa4p7AjJ2ZFisKA4Zt_Y0Sh0Ggkw9Vd3QkDkfgIshyCaIebKBQrVaOxSLnbIioWAJE1DhC?purpose=fullsize", rating: 4.9, bio: "Créatrice spécialisée dans les tenues modernes inspirées des tissus ivoiriens." },
-  { id: "a2", name: "Kadi Couture", specialty: "Boubous et vêtements sur mesure", city: "Bouaké", phone: "01 02 03 04 05", category: "Mode & Couture", photo: "https://images.openai.com/static-rsc-4/eD_TITEGk6zkD8vPsHYPpDIKuqnfCbj_xQHPXO7gA_pgWqI8yfzYL4Ih0J1ZOpg_HAjiezG3qMt5sDjLwJt_nMP1-puo3R5R0DXR7jUUPR2I3gRPLjnryhFp7MDCdxJrLeAc2FzHHp6-t0tOcsoolPQ74uMOvdvbV-FzDWtRFm_63CAnxzKQFWxxAICej9-s?purpose=fullsize", rating: 4.8, bio: "Atelier reconnu pour ses finitions artisanales haut de gamme." },
-  { id: "a3", name: "Wax Prestige CI", specialty: "Chemises et ensembles wax premium", city: "Yamoussoukro", phone: "05 06 07 08 09", category: "Mode & Couture", photo: "https://images.openai.com/static-rsc-4/GcyEzXweqnm56gFMemCG9Ngksbfd0PuYEUKOWQxdQ2omBRoMXKG8gouzLoYvy7wqAKzjgCPNN84wpwr4kH-PcRmVTlS5JYGSmleODjP88_pudgIW6NQ9Q_EbhwiEa9nUaDFj4daHdKvS3BuRUHpbyi2rE71VIyVNi5Zvi2VUApGUCflBRIMWQmLSjn9KlpG1?purpose=fullsize", rating: 5.0, bio: "Marque ivoirienne mêlant élégance africaine et style moderne." },
-  { id: "a4", name: "Créa Femme CI", specialty: "Robes élégantes et accessoires", city: "San Pedro", phone: "07 47 48 49 50", category: "Mode & Couture", photo: "https://images.openai.com/static-rsc-4/3ovf6LcsdItBzcaX5Z8v6NAuoqMwTG53OkWVKhSEKmIHRj4slBxw2RI20FIG2H_TdqQBA3I_q8QODH98-lxm4f_ILl9jCI9IvFWVcmrGPzDzAlFzfgRm5TNzSQ346lMHM4NlGfev_rS01-aqim107-AuhxFHRbea-_p5ONYBV3ytrNQ6csMEpQIe6Fbc6Wfv?purpose=fullsize", rating: 4.7, bio: "Boutique dédiée à la valorisation de la femme africaine." },
-  { id: "a5", name: "Gold Wax Atelier", specialty: "Mode africaine luxe", city: "Abidjan", phone: "07 77 88 99 00", category: "Mode & Couture", photo: "https://images.openai.com/static-rsc-4/0q9U-pv9DSSkAs-t6_zTsmC2J2FXAE2sF4Jtck0R6lNcqGE5tTHcTZMEc9PjnJ_mhQjCE7HdVOX-ybMlFt4OGzRRrDqtncZMd2UhcnP9ovESqEs0pMTt6HiWzsIMyZoC14T4PplKBovV4cYU4V81ZGU_38gZTE22ohMjeKLbx5wXk7CMxy7DpCz9QwgQqGas?purpose=fullsize", rating: 4.9, bio: "Créations premium pour cérémonies et événements." },
-
-  // Bijoux & Accessoires
-  { id: "a6", name: "Perles d’Abidjan", specialty: "Bracelets et colliers en perles", city: "Cocody", phone: "01 11 22 33 44", category: "Bijoux & Accessoires", photo: "https://images.openai.com/static-rsc-4/39r1qZjhmkwgZQ-Ua6dA2Rr4Auoi8nF98C9ZBrzmEq8Lc4uJfqApA4k8hX5ofnbh5Mw7GZg2i8pt6KRejJFYlzL9llepjSJDjsbtaC0oqqxMvxNJ7u84392XEWVdSYuK4JdlHJ7e-YS3sFzmZa73w83uDh6e5pBQoMM3pl8lXHexy39xaJnG_tZA4cASaaEF?purpose=fullsize", rating: 4.8, bio: "Fabrication de bijoux inspirés de la culture Akan." },
-  { id: "a7", name: "Afro Bijoux", specialty: "Boucles et bagues artisanales", city: "Treichville", phone: "05 55 66 77 88", category: "Bijoux & Accessoires", photo: "https://images.openai.com/static-rsc-4/214ERPEk2STDMLk6K581kUJ9T3i2vt63eUeVbWbJiB3gijmI64s4pKvvd611j5n16XSlVX2obZcga3aEPO6JZorTLQeXq4f2nBLesSPXRCFJoX1qNp6HXPhwb-b9QfyMy_e1mgFDN9YuddXl3r7-aX0T5WvN9j7i8oRYgX69R7U5K8I19CnTVwYPkfWKRmvz?purpose=fullsize", rating: 4.7, bio: "Bijoux modernes fabriqués à la main." },
-  { id: "a8", name: "Royal Perles CI", specialty: "Parures africaines haut de gamme", city: "Abidjan", phone: "07 01 01 01 01", category: "Bijoux & Accessoires", photo: "https://images.openai.com/static-rsc-4/86lJ7_YEjmOC7Nq7RkexBnGm95JiKVhwL587oTb5dZlNTtV9XmYltcTYHFzvbPFjzNjN2V1r_HfRLNThCfRJm-a9IPvm9ROa0bBimfOha72UoMpwRRckszkeevA1bHzWMehdLf-XOgMW2ibcL137HhX8wIEkmTfVn3m7YukFk4g28-YnorfYCYpEpfx7t9gX?purpose=fullsize", rating: 4.9, bio: "Artisan spécialisé dans les accessoires de luxe africains." },
-  { id: "a9", name: "N’zassa Style", specialty: "Sacs et pochettes wax", city: "Grand-Bassam", phone: "05 05 05 05 05", category: "Bijoux & Accessoires", photo: "https://images.openai.com/static-rsc-4/csvgD18NrTvKmJ9-tcEPf273L37yuWZtu4z8tv6pQgvysxXsDMvu2qB_VFHQdDdAivBltdduC5mXkH6xStZ6rPRG4UFZcOoJ89jpRVqxYkrsUEaYgX-C31CM8Cxd85q2poMoQlUukYsVh08HUeKuJdOC-8zQGt9njHosevu5VBs5h_pHSdWxzbwWEufFJZMY?purpose=fullsize", rating: 4.6, bio: "Création d’accessoires modernes en tissus africains." },
-  { id: "a10", name: "Artisan Chic Africa", specialty: "Sandales artisanales", city: "Daloa", phone: "07 88 88 88 88", category: "Bijoux & Accessoires", photo: "https://images.openai.com/static-rsc-4/qZM35a1SaPswPZIufu_aDn8NeZq0mdL3-u2a3ELuv62O2-AhkfjuswlvjYR2rzQae3ZEtv50i8FEEUvwPXZnF3RQNW_oMg2DUlLH9oRVJ26eOnNFFIu4djTP40jMBL-hkdxTPMpVVJhiWVT56JSIcKjT7xp5gtXdDupyQeAZjBeDdDaTBiqIuvLcTu2ErNi6?purpose=fullsize", rating: 4.7, bio: "Production artisanale inspirée du savoir-faire ivoirien." },
-
-  // Décoration & Sculpture
-  { id: "a11", name: "Bois Sacré", specialty: "Masques et sculptures africaines", city: "Korhogo", phone: "01 23 45 67 89", category: "Décoration & Maison", photo: "https://images.openai.com/static-rsc-4/A-8o9_4cu-fek1wWDjLUWcG85eLZym1DifRXKubeol6-fONossAeAtPe__iv3l1RJyUxaXgmToO04UULqYw_cf4DlbmkCo47lR_CgurAQKbD_sPtQkHM6oGbIe96sSnpdqaZiHDzBTcjHD8Vpy65jdhLDYgVS_BJNtpKZymlMSef2CphFSF600TqokJDiOAM?purpose=fullsize", rating: 5.0, bio: "Artisan reconnu pour ses œuvres traditionnelles." },
-  { id: "a12", name: "Baoulé Déco", specialty: "Objets déco artisanaux", city: "Bouaké", phone: "07 12 34 56 78", category: "Décoration & Maison", photo: "https://images.openai.com/static-rsc-4/xtKLBui-MgAQaMSozif9wJkQF-4Vr8C7KO5ZnxBWaaDilcBXOZowRZUKLz_19qVsvdTjEzgw3UAKcHhNIAf5QVytr5lcYdXBd-X7aPI42Vv9vzpBwtUaXucId_vSmGv3BaikSgwzYdOQ9Hs9LmhnC9QrcRA8RAnCAtmyevyHnkKnTa8hBx_eGyj3yYpKFf-h?purpose=fullsize", rating: 4.8, bio: "Création de décoration inspirée de l’art baoulé." },
-  { id: "a13", name: "Maison Ebène", specialty: "Tables et chaises en bois", city: "Man", phone: "01 11 11 11 11", category: "Décoration & Maison", photo: "https://images.openai.com/static-rsc-4/NJVAFWiiosNqOJiiDPjjdRHLWJeFn_bC0HQGugcmmqIgKF4HvBj4pd0SIHKWwcCbp63wul6Yo4Dwp_A9aNS7ndU9qV2zz0rDLL6yHNHDGzwhN29SKu19s8bzcQICCKEGqYQdY_3WoAIDjtWNmdYBkfZk4p2CBcyux1R5kVjw5xLaW3FqDpBK5Bz_70mgdcvF?purpose=fullsize", rating: 4.9, bio: "Fabrication de meubles modernes en bois local." },
-  { id: "a14", name: "Sculpt’Afrique", specialty: "Statues et œuvres décoratives", city: "Yamoussoukro", phone: "05 99 99 99 99", category: "Décoration & Maison", photo: "https://images.openai.com/static-rsc-4/CcfAEddXMqqqvqkhY6yrnTEFz0OBZP83oCoQIfiMUq99bRCGzHUxQy4S2Gz9oBsZWjpygmxHTEu4YDQGaigGEw7K8nauDch8-JFX-_CI_B75emtOtvE-sNiFUcwn9a2dAvYmINdvPJmlP-pU-qOBG30tSVLoXsgijkPbB1sIR6nw4-d4xGe6UC58FjDodyle?purpose=fullsize", rating: 4.8, bio: "Valorisation de l’art africain contemporain." },
-  { id: "a15", name: "Lagune Déco", specialty: "Lampes et tableaux artisanaux", city: "Abidjan", phone: "07 07 07 07 07", category: "Décoration & Maison", photo: "https://images.openai.com/static-rsc-4/ZfpmF4wnThRv_FTi3qF5hG8lf_NM9TcYQM-Th3pQygVt7URcxGJ6A6cjDYnyiVy65YrBao6YT8nW0STWMj9QXrVXrwy60fJKVe4lw8sZw2U3bx3BkdXCsl_smw0J0xn8UNS918KyuIHElF3HPK2bVpvcWc-lof4QJTT_XVWoAU32uOrKd4Asmssv5jrDTCLI?purpose=fullsize", rating: 4.7, bio: "Décoration premium inspirée des lagunes ivoiriennes." },
-
-  // Cosmétique Naturel
-  { id: "a16", name: "Beauté Nature CI", specialty: "Savons naturels et huiles", city: "Abidjan", phone: "07 10 20 30 40", category: "Cosmétique Naturel", photo: "https://images.openai.com/static-rsc-4/R12g5lckSIINwMvFV9SehWw8hARYCSk1A56ZE2aZ-XZdu-VL0NuTYDNpKz03EsOnfQKsiTVRYqL58QqA7UKzwLCIwv1FZaf2fX1cFwfirwL3qOVgk51oEEtk7iKwWaqvQ-hOnsAjwdtXDn8nGFmpZNILxdT6x3zlo0yeSLSnHOHJ8SWeMvtsPCBLP1Yit9wL?purpose=fullsize", rating: 4.8, bio: "Fabrication de soins naturels à base de karité." },
-  { id: "a17", name: "Nature Pure", specialty: "Huiles essentielles", city: "Gagnoa", phone: "01 22 33 44 55", category: "Cosmétique Naturel", photo: "https://images.openai.com/static-rsc-4/wgiQid57gOJNbuMph7eHHUYCrRbKBppqxgl5ysn9S6DLxY5n4LlYLdXY1lsBuzh36Hz9a2WOBZnOcMyJqb3ajuB7ji_cBy6AHm8rU1POo2yz-ljDJCLgnEzfjmUopSwUyePloD5VVL_ppa9Ow4d_Fn0Ay1L5ul_oIV7XLVxhMECIbpJerzWbdJ7pGQ37L40p?purpose=fullsize", rating: 4.7, bio: "Produits naturels issus de l’agriculture locale." },
-  { id: "a18", name: "Karité Prestige", specialty: "Beurre de karité premium", city: "Korhogo", phone: "05 55 55 55 55", category: "Cosmétique Naturel", photo: "https://images.openai.com/static-rsc-4/f6PBPpCtIHnUPFmE0IzbDSI00JSSaRouAVRYMc-wBwr7J6cXur7eXVtBVdhHlvDMXgwAJlQjCiZRJ6KC_8_XRcZnuYd8PO3wJ-ExPi2zA6oqn5F3helnu-vcnf1fhb-ZRaykuBcRcKK1W7s_LAszc_Re0VEXCsCOs08HB7pUE0QJGsm1BfjdHwJiA0niHQIU?purpose=fullsize", rating: 4.9, bio: "Transformation artisanale de produits naturels." },
-  { id: "a19", name: "Coco Beauty Africa", specialty: "Produits à base de coco", city: "San Pedro", phone: "07 00 01 02 03", category: "Cosmétique Naturel", photo: "https://images.openai.com/static-rsc-4/gT172n9Wp-8lyQ9_JkLCQklVjzWN8ZMtMDGdWh0f00DYlF9znjg-f-FwqoAva9alhB6bDPtgXo6RRoRNo8eQe2t-cR70E9vCdIQJf5iIfe5N8yzh7TIFBWaW-FkpQWTw4HVd91NXysnd7_bEyyyok4AXQyqeCDjynKzquflhYiEBn5dDfh1lLVPviDNlLkaA?purpose=fullsize", rating: 4.8, bio: "Gamme de soins hydratants artisanaux." },
-  { id: "a20", name: "Gold Nature Cosmetics", specialty: "Crèmes et savons bio", city: "Abengourou", phone: "05 44 33 22 11", category: "Cosmétique Naturel", photo: "https://images.openai.com/static-rsc-4/DNH46nD4V7SZD_G4suN6WNhXaneAroZhUFTECcT__97MhuXEPON67tPn2U5SNHpgpQJYGbuv0Shj-VPdQ4V9I2h7SRg5viLNGteHgl55FxK8F-SqchWVIUr1KzUnm3spgYIV8ZaHpit4bBfwrnFssx4Vh0rXHytY_CrYYLPtM6Btc5VJNzPL9Yv1y1XvwQCe?purpose=fullsize", rating: 4.9, bio: "Produits naturels sans produits chimiques." },
-
-  // Agriculture & Transformés
-  { id: "a21", name: "Terre Bio CI", specialty: "Fruits et légumes bio", city: "Divo", phone: "07 50 60 70 80", category: "Agriculture Bio", photo: "https://images.openai.com/static-rsc-4/LSme76yKuOdYO7Fqwq6vHAAo9qHxzp0bZ5SyMOsObw9Sqh1cWhVOMQUNWSwl2NLZeoJaa47HnNqjlhvDGBKsZRDbuOIcETwmjw09_kChJEsPGgur4giUavztDHdrsJvn9oZKJa8OJO4MZDS7JlJGgC0gUvpnUYX6mzTp8DBGjTEqVvvzCV4knMpBKLDDomF8?purpose=fullsize", rating: 4.8, bio: "Exploitation agricole écologique ivoirienne." },
-  { id: "a22", name: "Saveurs du Terroir", specialty: "Jus naturels et confitures", city: "Agboville", phone: "05 06 07 08 09", category: "Produits Transformés", photo: "https://images.openai.com/static-rsc-4/megwD67AZaysCBW1rkzehdMbsxjjKaGMXuqGoQGRH3sHGA1Hk26RvPJWLFlTyT6xmfP0-Iz4GhdFBDprcKJh-gjyHTu6mFNrJwVqDhtg1ky_g_TiMqI9ySsHtwJZAW8QHTph2C9i9dKeOUBVXUOzoUn27SfgW3hEElISCht1X79wI3Qh_-wJs-t3Ug3sfSFj?purpose=fullsize", rating: 4.7, bio: "Transformation artisanale de fruits locaux." },
-  { id: "a23", name: "Nature Farm Africa", specialty: "Tubercules et céréales bio", city: "Bouaflé", phone: "07 11 22 33 44", category: "Agriculture Bio", photo: "https://images.openai.com/static-rsc-4/PCkAknIrJNXCLeMvNtBrcJQL7PgdlpAqCFbItoqq_oZOlf11waWXaDecYRv-GOg9QX_J1iVCQ1tYAsaW2pIq4E_fd5VdDTCIY3rbfiqBPyb6F5r4pkdkDia9DMf-Td1-h4NjKmpWFMFjh3avjMDKgXOCR5knbCLQUVMNobCj7mum6_ZUNHGQRPlput2xKf4N?purpose=fullsize", rating: 4.9, bio: "Production locale sans pesticides chimiques." },
-  { id: "a24", name: "Coco Délices", specialty: "Produits dérivés de coco", city: "Assinie", phone: "01 44 44 44 44", category: "Produits Transformés", photo: "https://images.openai.com/static-rsc-4/pabGdO_OBZmhWFBJASQN3WBuPQllIC_mxUBiaYHo86pCuE7Iq5xau7o594Cx3XRRtSeL9dhjHZVcqy5cKfo683lZ_-OeEggHiDLAkXCXlE4XTIwem27BQBY25XSZY3HuKEBUWuXi96DHS2kXVLdNnq6NJb-qKmyJ2x3FqnKFLvKDVWQCCqe18yYnMvONmlyT?purpose=fullsize", rating: 4.8, bio: "Transformation artisanale de coco ivoirien." },
-  { id: "a25", name: "Bio Market CI", specialty: "Produits naturels transformés", city: "Yamoussoukro", phone: "07 99 88 77 66", category: "Agriculture Bio", photo: "https://images.openai.com/static-rsc-4/HEsK6TbkySn1PsY4cRBChvgjRIZCbW_rxGrW5sv3PUHXlIBWF7LO3NJPrNE_OqGS4_eVAE7u2-EjTlGVBNYy-MpnBtvdMis5rfHmZ4kulLjbakpF8QKpfRme5k1vMkLzmjz-uYmu2PjoAJqPDAlfS-sjURFf2vkJPACSBSdJ_apID9uxdv6fai3TYSHgxL8N?purpose=fullsize", rating: 4.7, bio: "Distribution de produits bio ivoiriens." },
-
-  // Multi-artisanat & Concept
-  { id: "a26", name: "Ivoire Création", specialty: "Produits artisanaux variés", city: "Abidjan", phone: "07 01 23 45 67", category: "Multi-artisanat", photo: "https://images.openai.com/static-rsc-4/NJVAFWiiosNqOJiiDPjjdRHLWJeFn_bC0HQGugcmmqIgKF4HvBj4pd0SIHKWwcCbp63wul6Yo4Dwp_A9aNS7ndU9qV2zz0rDLL6yHNHDGzwhN29SKu19s8bzcQICCKEGqYQdY_3WoAIDjtWNmdYBkfZk4p2CBcyux1R5kVjw5xLaW3FqDpBK5Bz_70mgdcvF?purpose=fullsize", rating: 4.8, bio: "Boutique regroupant plusieurs artisans locaux." },
-  { id: "a27", name: "Héritage Africain", specialty: "Produits traditions africaines", city: "Grand-Bassam", phone: "01 02 03 04 06", category: "Multi-artisanat", photo: "https://images.openai.com/static-rsc-4/X5tuN0ufD2r9F7wBsHx4L7fakVr3_8fCHIrkcGxtjVLo-Q5ux4OQFYarcKWtZz1IW0jprb3luV1FILg12aXLAjnpLVy8pD-WMOVjk7ePYN5tU_IZEAfoIg0L4fXCuf9SBTKy855V-X8MuRYUjMLki91qqSFvs3SX3Gfi0lxzc8yfQ1hzT1F9s6x2HEvZZiaL?purpose=fullsize", rating: 4.9, bio: "Valorisation du patrimoine ivoirien." },
-  { id: "a28", name: "Abidjan Handmade", specialty: "Produits faits main", city: "Cocody", phone: "07 12 12 12 12", category: "Multi-artisanat", photo: "https://images.openai.com/static-rsc-4/ujgsjeugidkr6IntcXh_qeM_SM1RlGcWfY0b9h22_VpP2H7RQkiVBLb7clpf18BThVlbUjJE9PlJX_1tdfOfB9GmQBaIrBIS62n-zf2ymVG-xREjN_REzFEdyrNkcz-1CDeZvnGX56yDBVmlAWcZ1ztZr821NkV0WV6G5NjgaM4-5hJM-IvE5414z3JvHQB3?purpose=fullsize", rating: 4.8, bio: "Sélection de créations modernes ivoiriennes." },
-  { id: "a29", name: "Royal Artisan CI", specialty: "Articles haut de gamme", city: "Marcory", phone: "05 05 05 05 09", category: "Multi-artisanat", photo: "https://images.openai.com/static-rsc-4/i7rQQ79E10WrKUCFkbxQUcns54vHCCv9cyEI8XXNnQxsc2pBYiqGC48lNbTeQkDliXMkjsRWAN8KBbaqpBoRjd1ESth4zDoqMxNn-pM4ZS81TQNWGPcFH4KNjlDoZicITDvxzQJSEvcq5HwNhdfSvNWl2I6Tq4FCyZZinfaDSVR0R6ot3A8DV66y6stR4Vrf?purpose=fullsize", rating: 4.9, bio: "Produits artisanaux de luxe fabriqués localement." },
-  { id: "a30", name: "Afro Home Market", specialty: "Maison, mode et accessoires", city: "Bingerville", phone: "07 44 55 66 77", category: "Multi-artisanat", photo: "https://images.openai.com/static-rsc-4/YhXN1q6VWS09fh8BYYIyrSvupv3HL6ttvWUf9-0O4kWHR2fpRxLn1YMsX5V0ehq_MFFp3RjX1VdnJMwmykiyu80r9ATfEFD6-wA0DZuydY-k-1xW3qgX82kpkdHt_ItCBZPSoW47Mwbo4NIPnpr_MkUmVvuS8WqubDN5g2jneu-rG_0cDlj57RNH76vVBGcm?purpose=fullsize", rating: 4.8, bio: "Espace dédié aux créations africaines contemporaines." }
+  { 
+    id: "a1", 
+    name: "Atelier Awa Création", 
+    specialty: "Robes et ensembles en Wax", 
+    city: "Abidjan (Treichville)", 
+    phone: "+225 07 01 02 03 04", 
+    category: "Mode & Couture", 
+    photo: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=400", 
+    rating: 4.9, 
+    bio: "Spécialiste de la couture africaine moderne. Awa travaille les tissus Wax et Pagne Baoulé pour créer des tenues d'exception." 
+  },
+  { 
+    id: "a6", 
+    name: "Perles d’Abidjan", 
+    specialty: "Bijoux Royaux Akan", 
+    city: "Abidjan (Cocody)", 
+    phone: "+225 01 11 22 33 44", 
+    category: "Bijoux & Accessoires", 
+    photo: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=400", 
+    rating: 4.8, 
+    bio: "Créatrice de bijoux inspirés des parures traditionnelles des reines Akan. Chaque perle est sélectionnée avec soin." 
+  },
+  { 
+    id: "a11", 
+    name: "Sculptures du Nord", 
+    specialty: "Masques et Objets d'Art", 
+    city: "Korhogo", 
+    phone: "+225 05 23 45 67 89", 
+    category: "Décoration & Maison", 
+    photo: "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=400", 
+    rating: 5.0, 
+    bio: "Maître sculpteur héritier du savoir-faire Senoufo. Ses masques sont reconnus pour leur finesse et leur authenticité." 
+  },
+  { 
+    id: "a16", 
+    name: "Karité & Savane", 
+    specialty: "Beurre de Karité & Cosmétique Bio", 
+    city: "Boundiali", 
+    phone: "+225 07 10 20 30 40", 
+    category: "Cosmétique Naturel", 
+    photo: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=400", 
+    rating: 4.8, 
+    bio: "Coopérative de femmes produisant un beurre de karité pur, transformé selon les méthodes ancestrales." 
+  },
+  { 
+    id: "a21", 
+    name: "Saveurs du Terroir", 
+    specialty: "Produits Agricoles & Attiéké", 
+    city: "Grand-Lahou", 
+    phone: "+225 01 02 03 04 05", 
+    category: "Agriculture Bio", 
+    photo: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?q=80&w=400", 
+    rating: 4.7, 
+    bio: "Producteur engagé dans l'agriculture biologique. Spécialiste de l'attiéké de qualité premium et des épices locales." 
+  }
 ];
 
 const categoriesConfig = [
-  { name: "Mode & Couture", count: 80, examples: ["Robe Wax Abidjan Chic", "Robe Reine Akan", "Boubou Prestige CI", "Ensemble Gold Wax", "Chemise Urban Africa", "Jupe Harmonie Wax", "Tunique Royal Femme", "Veste Afro Business", "Robe Élégance Baoulé", "Ensemble Coco Style"], imgTerms: ["african-fashion", "wax-print"] },
-  { name: "Bijoux & Accessoires", count: 60, examples: ["Bracelet Akan Prestige", "Collier Reine Africa", "Boucles Coco Chic", "Sac Royal Wax", "Sandales Gold Style", "Bracelet Soleil d’Afrique", "Collier Héritage Chic", "Pochette Urban Wax", "Sandales Élégance Femme", "Sac Créa Femme"], imgTerms: ["african-jewelry", "african-bag"] },
-  { name: "Décoration & Maison", count: 80, examples: ["Masque Baoulé Prestige", "Sculpture Bois Sacré", "Lampe Lagune Chic", "Tableau Soleil d’Afrique", "Panier Akan Style", "Table Prestige CI", "Vase Royal Africa", "Chaise Urban Gold", "Sculpture Harmonie CI", "Lampe Élégance Africa"], imgTerms: ["african-decor", "wooden-sculpture"] },
-  { name: "Cosmétique Naturel", count: 60, examples: ["Savon Noir Prestige", "Beurre Karité Gold", "Huile Coco Pure", "Crème Akan Nature", "Gommage Royal Femme", "Huile Baobab Bio", "Savon Urban Chic", "Crème Soleil Prestige", "Huile Héritage Africa", "Savon Coco Élégance"], imgTerms: ["natural-soap", "shea-butter"] },
-  { name: "Agriculture Bio", count: 60, examples: ["Tomates Nature CI", "Gingembre Premium", "Riz Bio Bouaké", "Maïs Nature Gold", "Patate Douce Bio", "Bananes Plantain Premium", "Salade Verte Nature", "Curcuma Prestige", "Oignons du Terroir", "Mangues Tropicales Bio"], imgTerms: ["organic-farm", "african-fruits"] },
-  { name: "Produits Transformés", count: 60, examples: ["Jus Gingembre Vitalité", "Bissap Bio Nature", "Farine Manioc Premium", "Poudre Cacao Pure", "Chips Banane Plantain", "Attiéké Déshydraté", "Confiture Mangue Soleil", "Huile Coco Nature", "Thé Tropical Bio", "Purée Arachide Nature"], imgTerms: ["fruit-juice", "dried-food"] },
-  { name: "Multi-artisanat", count: 20, examples: ["Objet de Collection", "Instrument de Musique", "Sculpture Bois", "Poterie", "Tissage"], imgTerms: ["african-craft", "handmade"] }
+  { 
+    name: "Mode & Couture", 
+    img: "https://images.unsplash.com/photo-1590739225287-bd31519780c3?q=80&w=800", 
+    examples: ["Robe de Soirée Wax", "Ensemble Pagne Baoulé", "Tunique Homme Kita", "Jupe Fleurie Wax", "Veste Ethnique"] 
+  },
+  { 
+    name: "Bijoux & Accessoires", 
+    img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800", 
+    examples: ["Collier Akan en Or", "Bracelet Perles Multicolores", "Boucles d'oreilles Cauri", "Sautoir Traditionnel", "Pochette de Soirée Wax"] 
+  },
+  { 
+    name: "Décoration & Maison", 
+    img: "https://images.unsplash.com/photo-1555580399-68df41416868?q=80&w=800", 
+    examples: ["Masque Baoulé de collection", "Statue Sénoufo en bois d'ébène", "Poterie de Katiola", "Nappe en Tissu Kita", "Vase Artisanal"] 
+  },
+  { 
+    name: "Cosmétique Naturel", 
+    img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800", 
+    examples: ["Pot de Beurre de Karité Brut", "Savon Noir aux Huiles", "Huile de Coco Vierge", "Baume à Lèvres Karité", "Masque Argile & Plantes"] 
+  },
+  { 
+    name: "Agriculture Bio", 
+    img: "https://images.unsplash.com/photo-1542601906990-b4d3fb773b09?q=80&w=800", 
+    examples: ["Attiéké de Grand-Lahou", "Café de Man en Grains", "Cacao de Soubré", "Piment Sec Concassé", "Gingembre Frais Bio"] 
+  }
 ];
 
 const products = [];
 
 categoriesConfig.forEach((cat, cIdx) => {
-  // Récupérer les artisans de cette catégorie
-  const catArtisans = artisans.filter(a => a.category === cat.name || cat.name === "Multi-artisanat");
+  // On prend les artisans qui correspondent à la catégorie
+  const catArtisans = artisans.filter(a => a.category === cat.name);
   
-  for(let i=1; i<=cat.count; i++) {
+  for(let i=1; i<=20; i++) {
     const baseName = cat.examples[(i-1) % cat.examples.length];
     const ethnie = ethnies[i % ethnies.length];
-    const artisan = catArtisans[i % catArtisans.length] || artisans[0];
+    // Si pas d'artisan spécifique, on prend le premier de la liste par défaut
+    const artisan = catArtisans[i % catArtisans.length] || artisans[i % artisans.length];
     
     products.push({
       id: `p_${cIdx}_${i}`,
       artisanId: artisan.id,
-      name: `${baseName} #${i}`,
+      name: `${baseName} Authentique`,
       category: cat.name,
       ethnie: ethnie,
-      price: 2500 + (Math.floor(Math.random() * 50) * 500),
-      image: `https://loremflickr.com/500/500/${cat.imgTerms[0]}?lock=${cIdx}_${i}`,
+      price: 3500 + (Math.floor(Math.random() * 40) * 500),
+      image: `${cat.img}&sig=${cIdx}${i}`,
       certified: i % 4 === 0,
-      story: `Découvrez ce magnifique ${baseName} fabriqué par ${artisan.name}. Cette œuvre est le fruit d'un savoir-faire ancestral transmis de génération en génération au sein de la communauté ${ethnie}. Chaque détail a été pensé pour refléter la richesse culturelle de la Côte d'Ivoire. En choisissant cet article, vous soutenez directement le travail de ${artisan.name} à ${artisan.city} et préservez un patrimoine précieux.`
+      story: `Cette pièce est une création originale de ${artisan.name}. Elle symbolise l'excellence culturelle de la communauté ${ethnie} et le raffinement de l'artisanat de Côte d'Ivoire. En l'achetant, vous soutenez directement l'économie locale.`
     });
   }
 });
-
 
 const mockData = {
   artisans,
