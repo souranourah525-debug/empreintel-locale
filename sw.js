@@ -3,7 +3,8 @@ const ASSETS = [
   'index.html',
   'style.css',
   'app.js',
-  'mockData.js'
+  'mockData.js',
+  'icon.png'
 ];
 
 self.addEventListener('install', (e) => {
