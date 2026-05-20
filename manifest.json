@@ -4,20 +4,20 @@
   "description": "Marketplace des Artisans Ivoiriens",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#FCF9F5",
-  "theme_color": "#AF853E",
+  "background_color": "#FDFBF7",
+  "theme_color": "#D4AF37",
   "icons": [
     {
       "src": "logo.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "logo.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }
