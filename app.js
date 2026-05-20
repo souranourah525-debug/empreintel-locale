@@ -166,16 +166,16 @@ function selectLogistics(el, type) {
 
 function openLanguageModal() {
   const html = `
-    <div class="lang-modal-content">
-      <button class="lang-btn" onclick="setLang('Français')">Français</button>
-      <button class="lang-btn" onclick="setLang('English')">English</button>
-      <button class="lang-btn" onclick="setLang('Dioula')">Dioula</button>
-      <button class="lang-btn" onclick="setLang('Baoulé')">Baoulé</button>
+    <div class="lang-modal-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 10px 0 20px 0;">
+      <button class="lang-btn" onclick="setLang('Français')" style="padding: 14px; border-radius: 12px; background: white; border: 1.5px solid var(--accent-light); font-weight: 700; color: var(--text-dark); cursor: pointer;">Français</button>
+      <button class="lang-btn" onclick="setLang('Bété')" style="padding: 14px; border-radius: 12px; background: white; border: 1.5px solid var(--accent-light); font-weight: 700; color: var(--text-dark); cursor: pointer;">Bété</button>
+      <button class="lang-btn" onclick="setLang('Dioula')" style="padding: 14px; border-radius: 12px; background: white; border: 1.5px solid var(--accent-light); font-weight: 700; color: var(--text-dark); cursor: pointer;">Dioula</button>
+      <button class="lang-btn" onclick="setLang('Baoulé')" style="padding: 14px; border-radius: 12px; background: white; border: 1.5px solid var(--accent-light); font-weight: 700; color: var(--text-dark); cursor: pointer;">Baoulé</button>
+      <button class="lang-btn" onclick="setLang('Ébrié')" style="padding: 14px; border-radius: 12px; background: white; border: 1.5px solid var(--accent-light); font-weight: 700; color: var(--text-dark); cursor: pointer;">Ébrié</button>
     </div>
   `;
   openProfileOption('Choisir la langue', html);
 }
-
 function setLang(lang) {
   alert('Langue changée : ' + lang);
   closeProfileOption();
@@ -386,16 +386,26 @@ function renderArtisans() {
   db.artisans.forEach(a => {
     const div = document.createElement('div');
     div.className = 'artisan-card-v1';
+    div.style.marginBottom = '20px';
     div.innerHTML = `
       <div style="display:flex; gap:15px; align-items:center;">
         <img src="${a.photo}" style="width:70px; height:70px; border-radius:15px; object-fit:cover; border:2px solid var(--accent-color);">
         <div style="flex:1">
           <div style="font-weight:800; font-family:serif; font-size:16px;">${a.name}</div>
           <div style="font-size:12px; color:var(--text-gray);">${a.specialty} • ${a.city}</div>
-          <p style="font-size:11px; color:var(--text-dark); margin-top:5px; line-height:1.4;">${a.bio || ''}</p>
           <div style="font-size:11px; color:var(--accent-color); font-weight:700; margin-top:2px;">★ ${a.rating} / 5</div>
         </div>
       </div>
+      
+      <div style="margin: 15px 0; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--accent-color); background: #000;">
+        <video controls poster="logo.png" style="width: 100%; height: 180px; object-fit: cover; display: block;">
+          <source src="${a.videoUrl || 'storytelling-default.mp4'}" type="video/mp4">
+          Votre navigateur ne supporte pas la lecture de vidéos.
+        </video>
+      </div>
+
+      <p style="font-style: italic; font-size:14px; color:var(--text-dark); margin-top:5px; line-height:1.4;">"${a.bio || ''}"</p>
+      
       <div style="margin-top:12px; display:flex; gap:8px;">
         <button class="btn-dark" style="flex:1; font-size:12px;" onclick="window.location.href='tel:${a.phone}'">Contact: ${a.phone}</button>
         <button class="btn-outline" style="flex:1; font-size:12px;" onclick="viewArtisanCatalogue('${a.id}')">Voir Articles</button>
@@ -527,24 +537,30 @@ function openAdminForm(type, id = null) {
       </div>
     `;
   } else {
-    html = `
-      <div style="text-align:left;">
-        <input type="hidden" id="edit-id" value="${id || ''}">
-        <label style="font-size:12px; color:var(--text-gray);">Nom de l'artisan</label>
-        <input type="text" id="adm-name" value="${item ? item.name : ''}" style="width:100%; margin-bottom:10px; padding:10px; border-radius:8px; border:1px solid #ddd;">
-        
-        <label style="font-size:12px; color:var(--text-gray);">Spécialité</label>
-        <input type="text" id="adm-spec" value="${item ? item.specialty : ''}" style="width:100%; margin-bottom:10px; padding:10px; border-radius:8px; border:1px solid #ddd;">
-        
-        <label style="font-size:12px; color:var(--text-gray);">Téléphone</label>
-        <input type="text" id="adm-phone" value="${item ? item.phone : ''}" style="width:100%; margin-bottom:10px; padding:10px; border-radius:8px; border:1px solid #ddd;">
-        
-        <label style="font-size:12px; color:var(--text-gray);">Lien Photo</label>
-        <input type="text" id="adm-img" value="${item ? item.photo : ''}" style="width:100%; margin-bottom:15px; padding:10px; border-radius:8px; border:1px solid #ddd;">
-        
-        <button class="btn-dark" style="width:100%" onclick="saveAdminItem('artisan')">Enregistrer l'artisan</button>
-      </div>
-    `;
+    // Remplacez la partie "else" (formulaire artisan) de openAdminForm par :
+} else {
+  html = `
+    <div style="text-align:left;">
+      <input type="hidden" id="edit-id" value="${id || ''}">
+      <label style="font-size:12px; color:var(--text-gray);">Nom de l'artisan</label>
+      <input type="text" id="adm-name" value="${item ? item.name : ''}" style="width:100%; margin-bottom:10px; padding:10px; border-radius:8px; border:1px solid #ddd;">
+      
+      <label style="font-size:12px; color:var(--text-gray);">Spécialité</label>
+      <input type="text" id="adm-spec" value="${item ? item.specialty : ''}" style="width:100%; margin-bottom:10px; padding:10px; border-radius:8px; border:1px solid #ddd;">
+      
+      <label style="font-size:12px; color:var(--text-gray);">Téléphone</label>
+      <input type="text" id="adm-phone" value="${item ? item.phone : ''}" style="width:100%; margin-bottom:10px; padding:10px; border-radius:8px; border:1px solid #ddd;">
+      
+      <label style="font-size:12px; color:var(--text-gray);">Lien Photo</label>
+      <input type="text" id="adm-img" value="${item ? item.photo : ''}" style="width:100%; margin-bottom:10px; padding:10px; border-radius:8px; border:1px solid #ddd;">
+
+      <label style="font-size:12px; color:var(--text-gray);">Lien Vidéo (Storytelling)</label>
+      <input type="text" id="adm-video" value="${item ? (item.videoUrl || '') : ''}" placeholder="Ex: videos/story.mp4" style="width:100%; margin-bottom:15px; padding:10px; border-radius:8px; border:1px solid #ddd;">
+      
+      <button class="btn-dark" style="width:100%" onclick="saveAdminItem('artisan')">Enregistrer l'artisan</button>
+    </div>
+  `;
+}
   }
   openProfileOption(item ? 'Modifier' : 'Ajouter', html);
 }
@@ -570,16 +586,18 @@ function saveAdminItem(type) {
         certified: true, artisanId: 'a1', ethnie: 'Toutes' 
       });
     }
+  // Dans la section artisan de saveAdminItem, mettez à jour comme ceci :
+} else {
+  const spec = document.getElementById('adm-spec').value;
+  const phone = document.getElementById('adm-phone').value;
+  const video = document.getElementById('adm-video').value; // <-- Ajoutez cette ligne
+  if(id) {
+    const a = db.artisans.find(x => x.id === id);
+    a.name = name; a.specialty = spec; a.phone = phone; a.photo = img; a.videoUrl = video; // <-- Ajoutez a.videoUrl
   } else {
-    const spec = document.getElementById('adm-spec').value;
-    const phone = document.getElementById('adm-phone').value;
-    if(id) {
-      const a = db.artisans.find(x => x.id === id);
-      a.name = name; a.specialty = spec; a.phone = phone; a.photo = img;
-    } else {
-      db.artisans.push({ id: 'a' + Date.now(), name, specialty: spec, phone, photo: img, city: 'Abidjan', rating: 5 });
-    }
+    db.artisans.push({ id: 'a' + Date.now(), name, specialty: spec, phone, photo: img, videoUrl: video, city: 'Abidjan', rating: 5 }); // <-- Ajoutez videoUrl
   }
+}
   saveData();
   closeProfileOption();
   alert('Enregistré !');
