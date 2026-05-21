@@ -244,9 +244,15 @@ function changeQty(n) {
 }
 
 function playAudioFromDetail() {
-  if(currentDetailProduct) playAudio(currentDetailProduct.id);
+  if (currentDetailProduct) {
+    // Force la réinitialisation de la synthèse vocale dès le premier clic mobile
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    // Appel sécurisé
+    playAudio(currentDetailProduct.id);
+  }
 }
-
 function selectPayMethod(el) {
   document.querySelectorAll('.pay-btn').forEach(b => b.classList.remove('selected'));
   el.classList.add('selected');
@@ -321,7 +327,13 @@ function closeAudio() {
 function renderProductCard(p, container) {
   const div = document.createElement('div');
   div.className = 'product-card';
-  div.onclick = () => openProductModal(p.id);
+  
+  // Gestion propre du clic pour le mobile
+  div.onclick = (e) => {
+    if (e.target.closest('button') || e.target.closest('i')) return;
+    openProductModal(p.id);
+  };
+
   div.innerHTML = `
     <div class="img-wrapper">
       <img src="${p.image}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Indisponible'">
@@ -333,10 +345,10 @@ function renderProductCard(p, container) {
         <div class="product-price">${p.price.toLocaleString()} F</div>
       </div>
       <div style="display:flex; gap:5px;">
-        <button class="mini-audio-btn" onclick="event.stopPropagation(); playAudio('${p.id}')">
+        <button class="mini-audio-btn" onclick="playAudio('${p.id}')">
           <i data-lucide="volume-2" size="14"></i>
         </button>
-        <button class="add-cart-mini" onclick="event.stopPropagation(); addToCart('${p.id}', '${p.name}', ${p.price}, '${p.image}')">
+        <button class="add-cart-mini" onclick="addToCart('${p.id}', '${p.name}', ${p.price}, '${p.image}')">
           <i data-lucide="plus" size="16"></i>
         </button>
       </div>
