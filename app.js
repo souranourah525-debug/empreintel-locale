@@ -549,30 +549,27 @@ function openAdminForm(type, id = null) {
       </div>
     `;
   } else {
-    // Remplacez la partie "else" (formulaire artisan) de openAdminForm par :
-} else {
-  html = `
-    <div style="text-align:left;">
-      <input type="hidden" id="edit-id" value="${id || ''}">
-      <label style="font-size:12px; color:var(--text-gray);">Nom de l'artisan</label>
-      <input type="text" id="adm-name" value="${item ? item.name : ''}" style="width:100%; margin-bottom:10px; padding:10px; border-radius:8px; border:1px solid #ddd;">
-      
-      <label style="font-size:12px; color:var(--text-gray);">Spécialité</label>
-      <input type="text" id="adm-spec" value="${item ? item.specialty : ''}" style="width:100%; margin-bottom:10px; padding:10px; border-radius:8px; border:1px solid #ddd;">
-      
-      <label style="font-size:12px; color:var(--text-gray);">Téléphone</label>
-      <input type="text" id="adm-phone" value="${item ? item.phone : ''}" style="width:100%; margin-bottom:10px; padding:10px; border-radius:8px; border:1px solid #ddd;">
-      
-      <label style="font-size:12px; color:var(--text-gray);">Lien Photo</label>
-      <input type="text" id="adm-img" value="${item ? item.photo : ''}" style="width:100%; margin-bottom:10px; padding:10px; border-radius:8px; border:1px solid #ddd;">
+    html = `
+      <div style="text-align:left;">
+        <input type="hidden" id="edit-id" value="${id || ''}">
+        <label style="font-size:12px; color:var(--text-gray);">Nom de l'artisan</label>
+        <input type="text" id="adm-name" value="${item ? item.name : ''}" style="width:100%; margin-bottom:10px; padding:10px; border-radius:8px; border:1px solid #ddd;">
+        
+        <label style="font-size:12px; color:var(--text-gray);">Spécialité</label>
+        <input type="text" id="adm-spec" value="${item ? item.specialty : ''}" style="width:100%; margin-bottom:10px; padding:10px; border-radius:8px; border:1px solid #ddd;">
+        
+        <label style="font-size:12px; color:var(--text-gray);">Téléphone</label>
+        <input type="text" id="adm-phone" value="${item ? item.phone : ''}" style="width:100%; margin-bottom:10px; padding:10px; border-radius:8px; border:1px solid #ddd;">
+        
+        <label style="font-size:12px; color:var(--text-gray);">Lien Photo</label>
+        <input type="text" id="adm-img" value="${item ? item.photo : ''}" style="width:100%; margin-bottom:10px; padding:10px; border-radius:8px; border:1px solid #ddd;">
 
-      <label style="font-size:12px; color:var(--text-gray);">Lien Vidéo (Storytelling)</label>
-      <input type="text" id="adm-video" value="${item ? (item.videoUrl || '') : ''}" placeholder="Ex: videos/story.mp4" style="width:100%; margin-bottom:15px; padding:10px; border-radius:8px; border:1px solid #ddd;">
-      
-      <button class="btn-dark" style="width:100%" onclick="saveAdminItem('artisan')">Enregistrer l'artisan</button>
-    </div>
-  `;
-}
+        <label style="font-size:12px; color:var(--text-gray);">Lien Vidéo (Storytelling)</label>
+        <input type="text" id="adm-video" value="${item ? (item.videoUrl || '') : ''}" placeholder="Ex: videos/story.mp4" style="width:100%; margin-bottom:15px; padding:10px; border-radius:8px; border:1px solid #ddd;">
+        
+        <button class="btn-dark" style="width:100%" onclick="saveAdminItem('artisan')">Enregistrer l'artisan</button>
+      </div>
+    `;
   }
   openProfileOption(item ? 'Modifier' : 'Ajouter', html);
 }
@@ -598,25 +595,34 @@ function saveAdminItem(type) {
         certified: true, artisanId: 'a1', ethnie: 'Toutes' 
       });
     }
-  // Dans la section artisan de saveAdminItem, mettez à jour comme ceci :
-} else {
-  const spec = document.getElementById('adm-spec').value;
-  const phone = document.getElementById('adm-phone').value;
-  const video = document.getElementById('adm-video').value; // <-- Ajoutez cette ligne
-  if(id) {
-    const a = db.artisans.find(x => x.id === id);
-    a.name = name; a.specialty = spec; a.phone = phone; a.photo = img; a.videoUrl = video; // <-- Ajoutez a.videoUrl
   } else {
-    db.artisans.push({ id: 'a' + Date.now(), name, specialty: spec, phone, photo: img, videoUrl: video, city: 'Abidjan', rating: 5 }); // <-- Ajoutez videoUrl
+    const spec = document.getElementById('adm-spec').value;
+    const phone = document.getElementById('adm-phone').value;
+    const video = document.getElementById('adm-video').value;
+    
+    if(id) {
+      const a = db.artisans.find(x => x.id === id);
+      a.name = name; a.specialty = spec; a.phone = phone; a.photo = img; a.videoUrl = video;
+    } else {
+      db.artisans.push({ 
+        id: 'a' + Date.now(), 
+        name, specialty: spec, phone, photo: img, 
+        videoUrl: video, city: 'Abidjan', rating: 5 
+      });
+    }
   }
-}
+  
   saveData();
   closeProfileOption();
   alert('Enregistré !');
-  if(type === 'product') { renderAdminProducts(); renderProducts(); }
-  else { renderAdminArtisans(); renderArtisans(); }
+  if(type === 'product') { 
+    renderAdminProducts(); 
+    renderProducts(); 
+  } else { 
+    renderAdminArtisans(); 
+    renderArtisans(); 
+  }
 }
-
 // Carousel
 let currentSlide = 0;
 function renderHeroCarousel() {
